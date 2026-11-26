@@ -186,7 +186,7 @@ class MainActivity : AppCompatActivity() {
             container?.addView(loadingOverlay)
             
             // Create floating action buttons
-            createFloatingButtons()
+            // createFloatingButtons()
             
             setContentView(container)
             
@@ -396,6 +396,7 @@ class MainActivity : AppCompatActivity() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 try {
                     super.onPageFinished(view, url)
+                    view?.evaluateJavascript("(function(){var m=document.querySelector('meta[name=viewport]');if(!m){m=document.createElement('meta');m.name='viewport';document.head.appendChild(m);}m.content='width=1920';})();", null)
                     progressBar?.visibility = View.GONE
                     // Hide loading overlay after first page loads
                     if (isFirstPageLoad) {
